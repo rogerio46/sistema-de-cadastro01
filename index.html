@@ -1,0 +1,514 @@
+<html><head><base href="." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestão de Vendas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    body {
+        padding: 10px;
+        background: #f8f9fa;
+    }
+    .container {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        max-width: 100%;
+        overflow-x: auto;
+    }
+    .nav-tabs {
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+    .tab-content {
+        padding: 15px;
+        border: 1px solid #dee2e6;
+        border-top: none;
+    }
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .form-control {
+        max-width: 100%;
+    }
+    @media (max-width: 768px) {
+        .container {
+            padding: 10px;
+        }
+        .btn {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        h1 {
+            font-size: 1.8rem;
+        }
+        h3 {
+            font-size: 1.5rem;
+        }
+        h4 {
+            font-size: 1.3rem;
+        }
+    }
+    </style>
+    </head>
+    <body>
+    
+    <div class="container">
+        <h1 class="mb-4">Sistema de Gestão de Vendas</h1>
+    
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="produtos-tab" data-bs-toggle="tab" href="#produtos" role="tab">Produtos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="clientes-tab" data-bs-toggle="tab" href="#clientes" role="tab">Clientes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pedidos-tab" data-bs-toggle="tab" href="#pedidos" role="tab">Pedidos</a>
+            </li>
+        </ul>
+    
+        <div class="tab-content" id="myTabContent">
+            <!-- Cadastro de Produtos -->
+            <div class="tab-pane fade show active" id="produtos" role="tabpanel">
+                <h3>Cadastro de Produtos</h3>
+                <form id="formProduto">
+                    <div class="mb-3">
+                        <label class="form-label">Nome do Produto</label>
+                        <input type="text" class="form-control" id="nomeProduto" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Descrição</label>
+                        <textarea class="form-control" id="descProduto" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tamanho</label>
+                        <input type="text" class="form-control" id="tamanhoProduto" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">S/V</label>
+                        <input type="text" class="form-control" id="svProduto" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">C/V</label>
+                        <input type="text" class="form-control" id="cvProduto" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Mercadoria</label>
+                        <input type="text" class="form-control" id="mercadoriaProduto" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Valor</label>
+                        <input type="number" step="0.01" class="form-control" id="valorProduto" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
+                </form>
+    
+                <h4 class="mt-4">Produtos Cadastrados</h4>
+                <div class="table-responsive">
+                    <table class="table" id="tabelaProdutos">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Descrição</th>
+                                <th>Tamanho</th>
+                                <th>S/V</th>
+                                <th>C/V</th>
+                                <th>Mercadoria</th>
+                                <th>Valor</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+    
+            <!-- Cadastro de Clientes -->
+            <div class="tab-pane fade" id="clientes" role="tabpanel">
+                <h3>Cadastro de Clientes</h3>
+                <form id="formCliente">
+                    <div class="mb-3">
+                        <label class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="nomeCliente" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">CPF</label>
+                        <input type="text" class="form-control" id="cpfCliente" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="emailCliente" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Telefone</label>
+                        <input type="tel" class="form-control" id="telefoneCliente" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Endereço</label>
+                        <input type="text" class="form-control" id="enderecoCliente" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cadastrar Cliente</button>
+                </form>
+    
+                <h4 class="mt-4">Clientes Cadastrados</h4>
+                <div class="table-responsive">
+                    <table class="table" id="tabelaClientes">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Email</th>
+                                <th>Telefone</th>
+                                <th>Endereço</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+    
+            <!-- Pedidos -->
+            <div class="tab-pane fade" id="pedidos" role="tabpanel">
+                <h3>Novo Pedido</h3>
+                <form id="formPedido">
+                    <div class="mb-3">
+                        <label class="form-label">Cliente</label>
+                        <select class="form-control" id="clientePedido" required>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Produto</label>
+                        <select class="form-control" id="produtoPedido" required>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Quantidade</label>
+                        <input type="number" class="form-control" id="quantidadePedido" required min="1">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Total</label>
+                        <input type="text" class="form-control" id="totalPedido" readonly>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Finalizar Pedido</button>
+                </form>
+    
+                <div id="resumoCompra" class="mt-4"></div>
+    
+                <h4 class="mt-4">Pedidos Realizados</h4>
+                <div class="table-responsive">
+                    <table class="table" id="tabelaPedidos">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Produto</th>
+                                <th>Quantidade</th>
+                                <th>Total</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    
+        <div class="text-center mt-4 mb-3">
+            <a href="https://wa.me/5500000000000" target="_blank" class="btn btn-success">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                    <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                </svg>
+                Contato via WhatsApp
+            </a>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // Banco de dados simulado usando localStorage
+    class Database {
+        constructor() {
+            this.produtos = JSON.parse(localStorage.getItem('produtos')) || [];
+            this.clientes = JSON.parse(localStorage.getItem('clientes')) || [];
+            this.pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+        }
+    
+        salvarProduto(produto) {
+            this.produtos.push(produto);
+            localStorage.setItem('produtos', JSON.stringify(this.produtos));
+        }
+    
+        editarProduto(index, produto) {
+            this.produtos[index] = produto;
+            localStorage.setItem('produtos', JSON.stringify(this.produtos));
+        }
+    
+        salvarCliente(cliente) {
+            this.clientes.push(cliente);
+            localStorage.setItem('clientes', JSON.stringify(this.clientes));
+        }
+    
+        salvarPedido(pedido) {
+            this.pedidos.push(pedido);
+            localStorage.setItem('pedidos', JSON.stringify(this.pedidos));
+        }
+    
+        removerCliente(index) {
+            this.clientes.splice(index, 1);
+            localStorage.setItem('clientes', JSON.stringify(this.clientes));
+        }
+    
+        removerPedido(index) {
+            this.pedidos.splice(index, 1);
+            localStorage.setItem('pedidos', JSON.stringify(this.pedidos));
+        }
+    }
+    
+    const db = new Database();
+    let produtoEditandoIndex = null;
+    
+    // Formulário de Produtos
+    document.getElementById('formProduto').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const produto = {
+            nome: document.getElementById('nomeProduto').value,
+            descricao: document.getElementById('descProduto').value,
+            tamanho: document.getElementById('tamanhoProduto').value,
+            sv: document.getElementById('svProduto').value,
+            cv: document.getElementById('cvProduto').value,
+            mercadoria: document.getElementById('mercadoriaProduto').value,
+            valor: parseFloat(document.getElementById('valorProduto').value)
+        };
+        
+        if (produtoEditandoIndex !== null) {
+            db.editarProduto(produtoEditandoIndex, produto);
+            produtoEditandoIndex = null;
+            document.querySelector('#formProduto button[type="submit"]').textContent = 'Cadastrar Produto';
+        } else {
+            db.salvarProduto(produto);
+        }
+        
+        atualizarTabelaProdutos();
+        e.target.reset();
+    });
+    
+    // Função de editar produto
+    function editarProduto(index) {
+        const produto = db.produtos[index];
+        document.getElementById('nomeProduto').value = produto.nome;
+        document.getElementById('descProduto').value = produto.descricao;
+        document.getElementById('tamanhoProduto').value = produto.tamanho;
+        document.getElementById('svProduto').value = produto.sv;
+        document.getElementById('cvProduto').value = produto.cv;
+        document.getElementById('mercadoriaProduto').value = produto.mercadoria;
+        document.getElementById('valorProduto').value = produto.valor;
+        
+        produtoEditandoIndex = index;
+        document.querySelector('#formProduto button[type="submit"]').textContent = 'Atualizar Produto';
+        document.getElementById('produtos-tab').click();
+    }
+    
+    // Formulário de Clientes
+    document.getElementById('formCliente').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const cliente = {
+            nome: document.getElementById('nomeCliente').value,
+            cpf: document.getElementById('cpfCliente').value,
+            email: document.getElementById('emailCliente').value,
+            telefone: document.getElementById('telefoneCliente').value,
+            endereco: document.getElementById('enderecoCliente').value
+        };
+        db.salvarCliente(cliente);
+        atualizarTabelaClientes();
+        atualizarSelectClientes();
+        e.target.reset();
+    });
+    
+    // Função para remover cliente
+    function removerCliente(index) {
+        if (confirm('Tem certeza que deseja remover este cliente?')) {
+            db.removerCliente(index);
+            atualizarTabelaClientes();
+            atualizarSelectClientes();
+        }
+    }
+    
+    // Função para remover pedido
+    function removerPedido(index) {
+        if (confirm('Tem certeza que deseja remover este pedido?')) {
+            db.removerPedido(index);
+            atualizarTabelaPedidos();
+        }
+    }
+    
+    // Cálculo do total do pedido
+    document.getElementById('quantidadePedido').addEventListener('input', calcularTotal);
+    document.getElementById('produtoPedido').addEventListener('change', calcularTotal);
+    
+    function calcularTotal() {
+        const quantidade = document.getElementById('quantidadePedido').value;
+        const produtoId = document.getElementById('produtoPedido').value;
+        const produto = db.produtos[produtoId];
+        
+        if (produto && quantidade) {
+            const total = produto.valor * quantidade;
+            document.getElementById('totalPedido').value = `R$ ${total.toFixed(2)}`;
+            document.getElementById('resumoCompra').innerHTML = `
+                <div class="alert alert-info">
+                    <h5>Resumo da Compra:</h5>
+                    <p>Produto: ${produto.nome}</p>
+                    <p>Quantidade: ${quantidade}</p>
+                    <p>Valor Unitário: R$ ${produto.valor.toFixed(2)}</p>
+                    <p>Total: R$ ${total.toFixed(2)}</p>
+                    <button onclick="enviarMensagemWhatsApp('${produto.nome}', ${quantidade}, ${total})" class="btn btn-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                        </svg>
+                        Enviar Pedido via WhatsApp
+                    </button>
+                </div>
+            `;
+        } else {
+            document.getElementById('totalPedido').value = '';
+            document.getElementById('resumoCompra').innerHTML = '';
+        }
+    }
+    
+    // Função para enviar mensagem via WhatsApp
+    function enviarMensagemWhatsApp(produto, quantidade, total) {
+        const clienteSelect = document.getElementById('clientePedido');
+        const cliente = db.clientes[clienteSelect.value];
+        
+        if (!cliente) {
+            alert('Por favor, selecione um cliente primeiro.');
+            return;
+        }
+    
+        const mensagem = encodeURIComponent(
+            `*Novo Pedido*\n\n` +
+            `*Cliente:* ${cliente.nome}\n` +
+            `*Produto:* ${produto}\n` +
+            `*Quantidade:* ${quantidade}\n` +
+            `*Total:* R$ ${total.toFixed(2)}\n\n` +
+            `*Endereço de Entrega:*\n${cliente.endereco}`
+        );
+        
+        window.open(`https://wa.me/5500000000000?text=${mensagem}`, '_blank');
+    }
+    
+    // Formulário de Pedidos
+    document.getElementById('formPedido').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const pedido = {
+            cliente: db.clientes[document.getElementById('clientePedido').value],
+            produto: db.produtos[document.getElementById('produtoPedido').value],
+            quantidade: parseInt(document.getElementById('quantidadePedido').value),
+            total: parseFloat(document.getElementById('totalPedido').value)
+        };
+        db.salvarPedido(pedido);
+        atualizarTabelaPedidos();
+        e.target.reset();
+        document.getElementById('totalPedido').value = '';
+    });
+    
+    // Funções de atualização da interface
+    function atualizarTabelaProdutos() {
+        const tbody = document.querySelector('#tabelaProdutos tbody');
+        tbody.innerHTML = '';
+        db.produtos.forEach((produto, index) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${produto.nome}</td>
+                <td>${produto.descricao}</td>
+                <td>${produto.tamanho}</td>
+                <td>${produto.sv}</td>
+                <td>${produto.cv}</td>
+                <td>${produto.mercadoria}</td>
+                <td>R$ ${produto.valor.toFixed(2)}</td>
+                <td>
+                    <button onclick="editarProduto(${index})" class="btn btn-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                        </svg>
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+        atualizarSelectProdutos();
+    }
+    
+    function atualizarTabelaClientes() {
+        const tbody = document.querySelector('#tabelaClientes tbody');
+        tbody.innerHTML = '';
+        db.clientes.forEach((cliente, index) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${cliente.nome}</td>
+                <td>${cliente.cpf}</td>
+                <td>${cliente.email}</td>
+                <td>${cliente.telefone}</td>
+                <td>${cliente.endereco}</td>
+                <td>
+                    <button onclick="removerCliente(${index})" class="btn btn-link btn-delete">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                        </svg>
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+    
+    function atualizarTabelaPedidos() {
+        const tbody = document.querySelector('#tabelaPedidos tbody');
+        tbody.innerHTML = '';
+        db.pedidos.forEach((pedido, index) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${pedido.cliente.nome}</td>
+                <td>${pedido.produto.nome}</td>
+                <td>${pedido.quantidade}</td>
+                <td>R$ ${pedido.total.toFixed(2)}</td>
+                <td>
+                    <button onclick="removerPedido(${index})" class="btn btn-link btn-delete">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                        </svg>
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+    
+    function atualizarSelectClientes() {
+        const select = document.getElementById('clientePedido');
+        select.innerHTML = '<option value="">Selecione um cliente</option>';
+        db.clientes.forEach((cliente, index) => {
+            select.innerHTML += `<option value="${index}">${cliente.nome}</option>`;
+        });
+    }
+    
+    function atualizarSelectProdutos() {
+        const select = document.getElementById('produtoPedido');
+        select.innerHTML = '<option value="">Selecione um produto</option>';
+        db.produtos.forEach((produto, index) => {
+            select.innerHTML += `<option value="${index}">${produto.nome} - R$ ${produto.valor.toFixed(2)}</option>`;
+        });
+    }
+    
+    // Inicialização
+    atualizarTabelaProdutos();
+    atualizarTabelaClientes();
+    atualizarSelectClientes();
+    atualizarSelectProdutos();
+    atualizarTabelaPedidos();
+    </script>
+    
+    </body></html>
